@@ -28,16 +28,21 @@ describe 'Connect4'
 		end
 		
 		describe 'with one player'
+			before_each
+				connect4.connect({username: "ExistingUser"})
+				connect4.connect({username: "TestUser"})
+			end
+			
 		  it 'should add player to existing game'
-		    // Pending
+		    connect4.should.have 1, 'games'
 		  end
 		
 			it 'should register the user with the game'
-			  // Pending
+			  connect4.games[0].should.have 2, 'players'
 			end
 			
 			it 'should register the user as the Yellow player'
-			  // Pending
+			  connect4.games[0].yellowPlayer().username.should.be "TestUser"
 			end
 			
 			it 'should tell the user that it is connected'
