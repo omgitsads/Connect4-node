@@ -1,12 +1,12 @@
 var vows = require('vows'), 
   assert = require('assert'),
-  game = require('../../lib/connect4.game');
+  Connect4Game = require('../../lib/connect4.game');
   
 vows.describe('Connect4Game').addBatch({
   "A Connect4Game": {
     ".addPlayer()": {
       topic: function(){ 
-        var g = game.create();
+        var g = new Connect4Game();
         g.addPlayer({username: "omgitsads"}, this.callback)
       },
       
@@ -16,7 +16,7 @@ vows.describe('Connect4Game').addBatch({
     },
     
     "with no players": {
-      topic: game.create(),
+      topic: new Connect4Game(),
       
       "has no players": function(topic){
         assert.length(topic.players, 0);
@@ -31,7 +31,7 @@ vows.describe('Connect4Game').addBatch({
     },
     "with one player": {
       topic: function(){
-        var g = game.create();
+        var g = new Connect4Game();
         g.addPlayer({username: "defaultPlayer"});
         return g;
       },
